@@ -3,173 +3,129 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Zbahis Çarkı • Ultra Casino</title>
-<meta name="color-scheme" content="dark">
+<title>Zbahis Çarkı • Ultra Premium</title>
+<meta name="color-scheme" content="dark" />
 <style>
   :root{
-    --gold:#ffd166;
-    --gold-deep:#c9a63a;
-    --bg1:#05090f;
-    --bg2:#0b1420;
-    --neon:#25FFE6;
-    --neon2:#0DC5FF;
-    --rim:#111927;
-    --shadow: rgba(0,0,0,.6);
+    --gold:#ffd166; --gold-2:#c9a63a; --gold-3:#fff1b0;
+    --bg:#070c14; --panel:#0e1622; --neon:#25FFE6; --neon2:#0DC5FF;
+    --txt:#eaf2ff;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
+    color:var(--txt);
     background:
-      radial-gradient(1200px 600px at 50% -10%, rgba(37,255,230,.18), transparent 60%),
-      radial-gradient(1200px 600px at 50% 110%, rgba(13,197,255,.14), transparent 60%),
-      radial-gradient(circle at 50% 40%, #0e1a29 0%, #07121d 35%, #050a11 100%);
-    color:#eef5ff; display:flex; align-items:center; justify-content:center; padding:24px;
+      radial-gradient(1200px 700px at 50% -10%, rgba(37,255,230,.16), transparent 60%),
+      radial-gradient(1200px 700px at 50% 110%, rgba(13,197,255,.12), transparent 60%),
+      radial-gradient(circle at 50% 45%, #0d1a2a 0%, #091522 38%, #070c14 100%);
+    display:grid; place-items:center; padding:22px;
   }
-  .wrap{
-    width: min(100%, 980px);
-    display:grid; gap:28px;
-    grid-template-columns:1fr;
-    place-items:center;
-  }
-  .brand{
-    display:flex; align-items:center; gap:14px; filter: drop-shadow(0 0 18px rgba(37,255,230,.25));
-  }
+  .wrap{ width:min(96vw,1040px); display:grid; gap:22px; place-items:center }
+  .brand{ display:flex; align-items:center; gap:14px; filter:drop-shadow(0 0 20px rgba(37,255,230,.25)) }
   .brand img{ width:220px; height:auto; object-fit:contain }
-  .badge{
-    padding:6px 12px; border:1px solid rgba(255,255,255,.1);
-    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-    border-radius:999px; font-size:12px; letter-spacing:.3px; color:#cde9ff;
+  .badge{ font-size:12px; padding:6px 10px; border-radius:999px; letter-spacing:.3px;
+    background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.12); color:#cfe6ff
   }
 
-  .stage{
-    position:relative; width:min(92vw, 520px); aspect-ratio:1/1; display:grid; place-items:center;
-    filter: drop-shadow(0 30px 70px rgba(0,0,0,.45));
-  }
-
-  /* neon aura */
-  .glow{
-    position:absolute; inset:-6%; border-radius:50%;
+  .stage{ width:min(92vw,560px); aspect-ratio:1/1; position:relative; }
+  .aura{
+    position:absolute; inset:-8%; border-radius:50%;
     background:
-      radial-gradient(closest-side, rgba(255,214,102,.22), transparent 60%),
-      radial-gradient(closest-side, rgba(37,255,230,.18), transparent 70%);
+      radial-gradient(closest-side, rgba(255,214,102,.24), transparent 60%),
+      radial-gradient(closest-side, rgba(37,255,230,.16), transparent 70%);
     filter: blur(18px); z-index:0;
   }
 
-  /* top pointer */
   .pointer{
-    position:absolute; top:-8px; left:50%; translate:-50% 0; width:0;height:0; z-index:6;
-    border-left:22px solid transparent; border-right:22px solid transparent; border-bottom:36px solid var(--gold);
-    filter: drop-shadow(0 0 10px rgba(255,214,102,.8)) drop-shadow(0 0 18px rgba(255,214,102,.5));
+    position:absolute; top:-6px; left:50%; translate:-50% 0; z-index:8;
+    width:0; height:0;
+    border-left:22px solid transparent; border-right:22px solid transparent; border-bottom:38px solid var(--gold);
+    filter: drop-shadow(0 0 12px rgba(255,214,102,.9)) drop-shadow(0 0 20px rgba(255,214,102,.5));
   }
   .pointer::after{
     content:""; position:absolute; top:26px; left:-18px; width:36px; height:6px; border-radius:6px;
-    background:linear-gradient(90deg, #fff8e1, var(--gold));
-    filter:blur(1px); opacity:.9;
+    background:linear-gradient(90deg, #fff8e1, var(--gold)); opacity:.9; filter:blur(.8px);
   }
 
-  /* wheel holder rim */
   .rim{
-    position:absolute; inset:0; border-radius:50%;
+    position:absolute; inset:0; border-radius:50%; padding:16px; z-index:1;
     background:
-      radial-gradient(circle at 30% 30%, rgba(255,255,255,.08), transparent 45%),
-      conic-gradient(from 0deg, rgba(255,255,255,.06), rgba(255,255,255,.01) 25%, rgba(0,0,0,.15) 60%, rgba(255,255,255,.06) 100%),
-      linear-gradient(180deg, #252c3a, #0e1622);
-    padding:14px;
+      radial-gradient(circle at 35% 30%, rgba(255,255,255,.08), transparent 40%),
+      conic-gradient(from 0deg, rgba(255,255,255,.06), rgba(0,0,0,.18) 60%, rgba(255,255,255,.06) 100%),
+      linear-gradient(180deg, #283243, #101826);
     box-shadow:
       inset 0 0 0 3px rgba(255,255,255,.06),
       inset 0 0 50px rgba(0,0,0,.6),
-      0 0 0 1px rgba(255,255,255,.06);
-  }
-  .rim::after{
-    content:""; position:absolute; inset:8px; border-radius:50%;
-    box-shadow: inset 0 0 30px rgba(0,0,0,.55);
+      0 30px 60px rgba(0,0,0,.55);
   }
 
-  /* wheel svg fits inside */
-  .wheel{
-    position:relative; z-index:1; width:100%; height:100%;
-    border-radius:50%;
-    display:grid; place-items:center;
-    transition: transform 5.6s cubic-bezier(.21, .96, .16, 1);
-    will-change: transform;
+  .bezel{
+    position:absolute; inset:12px; border-radius:50%;
+    border:12px solid transparent;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 45%) padding-box,
+      linear-gradient(135deg, var(--gold-3), var(--gold) 40%, var(--gold-2)) border-box;
+    z-index:2;
   }
 
-  /* hub (center button) */
+  .wheel{ position:absolute; inset:28px; border-radius:50%; z-index:3; will-change:transform }
+  /* cam parlaması */
+  .glass{
+    position:absolute; inset:28px; border-radius:50%; z-index:5; pointer-events:none;
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,.22), transparent 60%),
+      radial-gradient(80% 60% at 50% 120%, rgba(255,255,255,.08), transparent 50%);
+    mix-blend-mode: screen; opacity:.25;
+  }
+
   .hub{
-    position:absolute; width:27%; aspect-ratio:1/1; border-radius:50%; z-index:5;
+    position:absolute; inset:calc(50% - 15%); border-radius:50%; z-index:7; display:grid; place-items:center;
     background:
-      radial-gradient(circle at 35% 35%, #fff6d4 0%, #ffe08a 25%, var(--gold) 50%, var(--gold-deep) 100%);
+      radial-gradient(circle at 35% 35%, #fff6d4 0%, #ffe08a 25%, var(--gold) 50%, var(--gold-2) 100%);
     border:4px solid rgba(0,0,0,.35);
-    box-shadow:
-      inset 0 6px 16px rgba(255,255,255,.5),
-      inset 0 -16px 28px rgba(0,0,0,.45),
-      0 0 30px rgba(255,214,102,.35);
-    display:grid; place-items:center;
-    text-align:center; padding:8px;
+    box-shadow: inset 0 6px 16px rgba(255,255,255,.55), inset 0 -16px 28px rgba(0,0,0,.45), 0 0 28px rgba(255,214,102,.35);
   }
-  .hub .txt{
-    font-weight:800; font-size: clamp(12px, 3vw, 16px);
-    text-transform:uppercase; color:#2a1800; letter-spacing:.08em;
-    text-shadow:0 1px 0 #ffe6a6, 0 2px 2px rgba(0,0,0,.2);
-  }
+  .hub .txt{ font-weight:900; font-size:clamp(12px,3vw,16px); letter-spacing:.1em; color:#2a1800; text-transform:uppercase }
 
-  /* spin button */
-  .controls{ display:flex; gap:14px; align-items:center; justify-content:center; margin-top:8px }
+  .controls{ display:flex; gap:12px; align-items:center; justify-content:center; margin-top:6px }
   .btn{
-    cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;
-    padding:14px 26px; font-weight:800; font-size:18px; letter-spacing:.5px; border-radius:14px;
-    background: linear-gradient(90deg, #ffe28a, #ffb64d);
-    color:#1b1200; border:none; box-shadow:0 8px 24px rgba(255,182,77,.35), inset 0 -6px 12px rgba(0,0,0,.2);
-    transition: transform .15s ease, filter .2s ease;
+    cursor:pointer; user-select:none; padding:14px 26px; border:none; border-radius:14px;
+    background:linear-gradient(90deg, #ffe28a, #ffb64d);
+    color:#1b1200; font-weight:800; letter-spacing:.5px; font-size:18px;
+    box-shadow:0 8px 24px rgba(255,182,77,.35), inset 0 -6px 12px rgba(0,0,0,.2);
+    transition:transform .15s ease, opacity .2s ease;
   }
-  .btn:hover{ transform: translateY(-2px) }
-  .btn:active{ transform: translateY(0) scale(.99) }
-  .btn[disabled]{ opacity:.65; cursor:not-allowed }
+  .btn:hover{ transform:translateY(-2px) }
+  .btn[disabled]{ opacity:.6; cursor:not-allowed }
 
-  /* subtitle */
-  .hint{ font-size:13px; color:#bcd4f7; opacity:.8; margin-top:4px }
+  .hint{ font-size:12px; color:#bcd4f7; opacity:.8; text-align:center }
 
-  /* popup */
-  .popup{
-    position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:20;
-    background:rgba(0,0,0,.72); backdrop-filter: blur(6px);
-  }
-  .popup.show{ display:flex; }
+  /* Popup */
+  .popup{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:20; background:rgba(0,0,0,.7); backdrop-filter:blur(6px) }
+  .popup.show{ display:flex }
   .card{
-    width:min(92vw,560px); border-radius:22px; padding:28px; text-align:center;
-    background:
-      radial-gradient(120% 160% at 50% -20%, rgba(37,255,230,.12), transparent 40%),
-      linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    width:min(92vw,560px); border-radius:22px; padding:26px; text-align:center;
+    background: radial-gradient(120% 160% at 50% -20%, rgba(37,255,230,.12), transparent 40%), linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
     border:1px solid rgba(255,255,255,.12);
     box-shadow:0 18px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.2);
-    animation: pop .5s ease;
+    animation:pop .45s ease;
   }
-  .card img{ width:180px; height:auto; object-fit:contain; filter: drop-shadow(0 0 16px rgba(37,255,230,.3)); }
-  .card h2{
-    margin:10px 0 6px; font-size: clamp(20px, 3.6vw, 28px);
-    text-shadow: 0 1px 0 rgba(0,0,0,.4);
-  }
-  .card p{ margin:0; color:#d7eaff; opacity:.9 }
-  .cta{
-    margin-top:18px;
-    background:linear-gradient(90deg, #2cf08c, #10b981);
-    color:white; border:none; border-radius:14px; padding:14px 22px; font-weight:800; letter-spacing:.4px; cursor:pointer;
+  .card img{ width:180px; filter:drop-shadow(0 0 16px rgba(37,255,230,.3)) }
+  .card h2{ margin:10px 0 6px; font-size:clamp(20px,3.6vw,28px) }
+  .card p{ margin:0; color:#d7eaff }
+  .cta{ margin-top:16px; padding:14px 22px; border:none; border-radius:14px; font-weight:800; letter-spacing:.4px; cursor:pointer;
+    color:#fff; background:linear-gradient(90deg,#2cf08c,#10b981);
     box-shadow:0 10px 26px rgba(16,185,129,.35), inset 0 -6px 12px rgba(0,0,0,.25);
   }
-  .ghost{
-    margin-top:10px; background:transparent; border:1px solid rgba(255,255,255,.22); color:#e6f2ff;
-    padding:10px 16px; border-radius:12px; cursor:pointer
-  }
-  @keyframes pop { from{ transform:scale(.9); opacity:0 } to{ transform:scale(1); opacity:1 } }
+  .ghost{ margin-top:10px; padding:10px 16px; border-radius:12px; background:transparent; border:1px solid rgba(255,255,255,.22); color:#e6f2ff; cursor:pointer }
+  @keyframes pop{ from{ transform:scale(.9); opacity:0 } to{ transform:scale(1); opacity:1 } }
 
-  /* confetti canvas */
+  /* Confetti */
   canvas#confetti{ position:fixed; inset:0; pointer-events:none; z-index:18 }
 
-  /* small footer note */
-  .foot{ font-size:12px; color:#9fbbe2; opacity:.7; text-align:center }
-
-  /* responsive tweak */
   @media (max-width:480px){
     .brand img{ width:180px }
     .btn{ padding:12px 20px; font-size:16px }
@@ -180,104 +136,25 @@
   <div class="wrap">
     <div class="brand">
       <img src="logo.png" alt="Zbahis">
-      <span class="badge">Premium Casino • Zbahis Çarkı</span>
+      <span class="badge">Ultra Premium Çark • Zbahis</span>
     </div>
 
     <div class="stage" aria-live="polite">
-      <div class="glow"></div>
-      <div class="pointer"></div>
+      <div class="aura"></div>
+      <div class="pointer" aria-hidden="true"></div>
+      <div class="rim"></div>
+      <div class="bezel"></div>
 
-      <div class="rim">
-        <!-- WHEEL -->
-        <div class="wheel" id="wheel" aria-label="Ödül Çarkı">
-          <!-- SVG slices -->
-          <svg id="wheelSvg" viewBox="0 0 1000 1000" width="100%" height="100%" aria-hidden="true">
-            <!-- drop shadows -->
-            <defs>
-              <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
-                <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="rgba(0,0,0,0.55)"/>
-              </filter>
-              <radialGradient id="sliceShine" cx="35%" cy="35%">
-                <stop offset="0%" stop-color="rgba(255,255,255,.25)"/>
-                <stop offset="40%" stop-color="rgba(255,255,255,.05)"/>
-                <stop offset="100%" stop-color="rgba(0,0,0,.15)"/>
-              </radialGradient>
-            </defs>
-
-            <!-- background plate -->
-            <circle cx="500" cy="500" r="470" fill="#0a1320" filter="url(#softShadow)"/>
-
-            <!-- 4 slices (0..360 each 90deg) -->
-            <!-- We paint wide arcs with slight gradient overlays for depth -->
-            <g id="slices">
-              <!-- Red -->
-              <path d="M500,500 L500,40 A460,460 0 0,1 860,140 Z"
-                    fill="#e63946"/>
-              <path d="M500,500 L860,140 A460,460 0 0,1 960,500 Z"
-                    fill="#2ecc71"/>
-              <path d="M500,500 L960,500 A460,460 0 0,1 860,860 Z"
-                    fill="#3498db"/>
-              <path d="M500,500 L860,860 A460,460 0 0,1 500,960 Z"
-                    fill="#f39c12"/>
-              <!-- mirrors to complete circle -->
-              <path d="M500,500 L500,960 A460,460 0 0,1 140,860 Z"
-                    fill="#e63946"/>
-              <path d="M500,500 L140,860 A460,460 0 0,1 40,500 Z"
-                    fill="#2ecc71"/>
-              <path d="M500,500 L40,500 A460,460 0 0,1 140,140 Z"
-                    fill="#3498db"/>
-              <path d="M500,500 L140,140 A460,460 0 0,1 500,40 Z"
-                    fill="#f39c12"/>
-              <!-- radial sheen -->
-              <circle cx="500" cy="500" r="460" fill="url(#sliceShine)" opacity=".35"/>
-            </g>
-
-            <!-- text labels on arcs -->
-            <g id="labels" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="44" fill="#fff">
-              <!-- define paths around mid-radius -->
-              <defs>
-                <path id="arc1" d="M 500 140 A 360 360 0 0 1 860 500" />
-                <path id="arc2" d="M 860 500 A 360 360 0 0 1 500 860" />
-                <path id="arc3" d="M 500 860 A 360 360 0 0 1 140 500" />
-                <path id="arc4" d="M 140 500 A 360 360 0 0 1 500 140" />
-              </defs>
-              <text letter-spacing=".06em"><textPath href="#arc1" startOffset="50%" text-anchor="middle">1000 TL NAKİT</textPath></text>
-              <text letter-spacing=".06em"><textPath href="#arc2" startOffset="50%" text-anchor="middle">1000 TL FREESPIN</textPath></text>
-              <text letter-spacing=".06em"><textPath href="#arc3" startOffset="50%" text-anchor="middle">1000 TL BONUS BUY</textPath></text>
-              <text letter-spacing=".06em"><textPath href="#arc4" startOffset="50%" text-anchor="middle">1000 TL FREEBET</textPath></text>
-            </g>
-
-            <!-- gold bezel -->
-            <circle cx="500" cy="500" r="470" fill="none" stroke="url(#goldStroke)" stroke-width="18"/>
-            <defs>
-              <linearGradient id="goldStroke" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#fff3c2"/>
-                <stop offset="35%" stop-color="#ffd166"/>
-                <stop offset="60%" stop-color="#cfa43b"/>
-                <stop offset="100%" stop-color="#fff0b0"/>
-              </linearGradient>
-            </defs>
-
-            <!-- rivets -->
-            <g id="rivets" fill="#ffecb3">
-              <!-- 24 rivets -->
-              <script type="application/ecmascript"><![CDATA[
-                // (placeholder to avoid validator warnings)
-              ]]></script>
-            </g>
-          </svg>
-
-          <!-- center hub -->
-          <div class="hub"><div class="txt">ÇEVİR</div></div>
-        </div>
-      </div>
+      <!-- Wheel canvas (SVG) -->
+      <svg class="wheel" id="wheelSvg" viewBox="0 0 1000 1000" aria-label="Ödül Çarkı"></svg>
+      <div class="glass"></div>
+      <div class="hub"><div class="txt">ÇEVİR</div></div>
     </div>
 
     <div class="controls">
       <button class="btn" id="spinBtn">Çarkı Çevir</button>
     </div>
-    <div class="hint">Adil döndürme: sonuç rastgele belirlenir. Çark animasyonu görsel amaçlıdır.</div>
-    <div class="foot">© Zbahis • Premium Casino Deneyimi</div>
+    <div class="hint">Her dilimde tek barem (tık noktası). Sonuç adil ve rastgeledir; animasyon görseldir.</div>
   </div>
 
   <!-- Confetti -->
@@ -295,170 +172,283 @@
   </div>
 
 <script>
-/* ====== CONFIG ====== */
+/* =================== CONFIG =================== */
 const prizes = [
   "🎁 1000 TL Nakit",
   "🎁 1000 TL Freespin",
   "🎁 1000 TL Bonus Buy",
   "🎁 1000 TL Freebet",
+  // İstersen buraya yeni dilimler ekle; baremler otomatik oluşur.
 ];
 const siteUrl = "https://zbahis.com";
 
-/* ====== DOM ====== */
-const wheel   = document.getElementById("wheel");
-const svg     = document.getElementById("wheelSvg");
-const spinBtn = document.getElementById("spinBtn");
-const popup   = document.getElementById("popup");
-const resultText = document.getElementById("resultText");
-const goSite  = document.getElementById("goSite");
-const closePop= document.getElementById("closePop");
-const confettiCanvas = document.getElementById("confetti");
-const hubTxt = document.querySelector(".hub .txt");
+/* =================== BUILD WHEEL (SVG) =================== */
+const svg = document.getElementById("wheelSvg");
+const CX=500, CY=500, R_OUT=460, R_IN=120;
+const SLICE_COLORS = [
+  ["#d83a42","#ff6a74"], // kırmızı degrade
+  ["#20bf6b","#7bed9f"], // yeşil
+  ["#2980b9","#6fb3ff"], // mavi
+  ["#f39c12","#ffd66e"]  // turuncu
+];
 
-/* ====== RIVETS ====== */
-(function makeRivets(){
-  const g = svg.getElementById ? svg.getElementById("rivets") : document.getElementById("rivets");
-  if(!g) return;
-  const cx=500, cy=500, r=470;
-  for(let i=0;i<24;i++){
-    const a = (i/24)*Math.PI*2;
-    const x = cx + Math.cos(a)*(r-9);
-    const y = cy + Math.sin(a)*(r-9);
-    const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
-    c.setAttribute("cx",x); c.setAttribute("cy",y); c.setAttribute("r","5.5");
-    c.setAttribute("fill","#ffecb3");
-    c.setAttribute("stroke","rgba(0,0,0,.45)");
-    c.setAttribute("stroke-width","1");
-    g.appendChild(c);
+function polarToXY(r, ang){ return [CX + r*Math.sin(ang), CY - r*Math.cos(ang)]; } // 0°=12 o'clock
+function buildWheel(){
+  svg.innerHTML=""; // reset
+  // arka plaka
+  const plate = document.createElementNS("http://www.w3.org/2000/svg","circle");
+  plate.setAttribute("cx",CX); plate.setAttribute("cy",CY); plate.setAttribute("r",R_OUT);
+  plate.setAttribute("fill","#0a1320"); svg.appendChild(plate);
+
+  const N = prizes.length;
+  const sliceDeg = 360 / N;
+  const sliceRad = (Math.PI*2) / N;
+
+  // Gold separators
+  const sepGroup = document.createElementNS(svg.namespaceURI,"g"); svg.appendChild(sepGroup);
+
+  // Slices + labels + barems
+  for(let i=0;i<N;i++){
+    const startAng = i*sliceRad;
+    const endAng = (i+1)*sliceRad;
+    const midAng = startAng + sliceRad/2;
+
+    // Path for slice (donut segment)
+    const [x1,y1] = polarToXY(R_IN, startAng);
+    const [x2,y2] = polarToXY(R_OUT, startAng);
+    const [x3,y3] = polarToXY(R_OUT, endAng);
+    const [x4,y4] = polarToXY(R_IN, endAng);
+
+    const largeArc = (sliceRad > Math.PI) ? 1 : 0;
+
+    const pathData = [
+      `M ${x1} ${y1}`,
+      `L ${x2} ${y2}`,
+      `A ${R_OUT} ${R_OUT} 0 ${largeArc} 1 ${x3} ${y3}`,
+      `L ${x4} ${y4}`,
+      `A ${R_IN} ${R_IN} 0 ${largeArc} 0 ${x1} ${y1}`,
+      'Z'
+    ].join(' ');
+
+    const path = document.createElementNS(svg.namespaceURI,"path");
+    path.setAttribute("d", pathData);
+
+    const col = SLICE_COLORS[i % SLICE_COLORS.length];
+    const gradId = `grad${i}`;
+    const grad = document.createElementNS(svg.namespaceURI,"linearGradient");
+    grad.setAttribute("id",gradId);
+    grad.setAttribute("x1","0"); grad.setAttribute("y1","0"); grad.setAttribute("x2","1"); grad.setAttribute("y2","1");
+    const s1 = document.createElementNS(svg.namespaceURI,"stop"); s1.setAttribute("offset","0%"); s1.setAttribute("stop-color",col[0]);
+    const s2 = document.createElementNS(svg.namespaceURI,"stop"); s2.setAttribute("offset","100%"); s2.setAttribute("stop-color",col[1]);
+    grad.appendChild(s1); grad.appendChild(s2);
+    svg.appendChild(grad);
+
+    path.setAttribute("fill", `url(#${gradId})`);
+    // parlama overlay
+    path.setAttribute("opacity","0.98");
+    svg.appendChild(path);
+
+    // subtle radial shine
+    const shine = document.createElementNS(svg.namespaceURI,"circle");
+    shine.setAttribute("cx",CX); shine.setAttribute("cy",CY); shine.setAttribute("r",R_OUT);
+    shine.setAttribute("fill","url(#shine)");
+    shine.setAttribute("opacity",".22");
+    if(i===0){
+      const rg = document.createElementNS(svg.namespaceURI,"radialGradient");
+      rg.setAttribute("id","shine");
+      const rs1 = document.createElementNS(svg.namespaceURI,"stop");
+      rs1.setAttribute("offset","0%"); rs1.setAttribute("stop-color","rgba(255,255,255,.4)");
+      const rs2 = document.createElementNS(svg.namespaceURI,"stop");
+      rs2.setAttribute("offset","55%"); rs2.setAttribute("stop-color","rgba(255,255,255,.05)");
+      const rs3 = document.createElementNS(svg.namespaceURI,"stop");
+      rs3.setAttribute("offset","100%"); rs3.setAttribute("stop-color","rgba(0,0,0,.2)");
+      rg.appendChild(rs1); rg.appendChild(rs2); rg.appendChild(rs3);
+      svg.appendChild(rg);
+    }
+    svg.appendChild(shine);
+
+    // Label along mid-arc
+    const arcId = `arc${i}`;
+    const midR = (R_IN + R_OUT) / 2;
+    const [ax1,ay1] = polarToXY(midR, startAng + 0.04);
+    const [ax2,ay2] = polarToXY(midR, endAng - 0.04);
+    const arc = document.createElementNS(svg.namespaceURI,"path");
+    arc.setAttribute("id",arcId);
+    arc.setAttribute("d", `M ${ax1} ${ay1} A ${midR} ${midR} 0 0 1 ${ax2} ${ay2}`);
+    arc.setAttribute("fill","none"); svg.appendChild(arc);
+
+    const label = document.createElementNS(svg.namespaceURI,"text");
+    label.setAttribute("fill","#fff"); label.setAttribute("font-size","36"); label.setAttribute("font-weight","800");
+    label.setAttribute("letter-spacing",".06em");
+    const textPath = document.createElementNS(svg.namespaceURI,"textPath");
+    textPath.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href",`#${arcId}`);
+    textPath.setAttribute("startOffset","50%"); textPath.setAttribute("text-anchor","middle");
+    textPath.textContent = prizes[i].replace("🎁 ","");
+    label.appendChild(textPath); svg.appendChild(label);
+
+    // GOLD SEPARATOR lines (slice borders)
+    const [sx1,sy1] = polarToXY(R_IN, startAng);
+    const [sx2,sy2] = polarToXY(R_OUT, startAng);
+    const sep = document.createElementNS(svg.namespaceURI,"line");
+    sep.setAttribute("x1",sx1); sep.setAttribute("y1",sy1);
+    sep.setAttribute("x2",sx2); sep.setAttribute("y2",sy2);
+    sep.setAttribute("stroke","url(#goldStroke)"); sep.setAttribute("stroke-width","6");
+    sepGroup.appendChild(sep);
+
+    // ===== PEG/BAREM (one per slice, at center angle) =====
+    const pegR = R_OUT - 10; // near edge
+    const pegLen = 24, pegTh = 6;
+    const [px,py] = polarToXY(pegR, midAng);
+    const peg = document.createElementNS(svg.namespaceURI,"rect");
+    peg.setAttribute("width", pegLen); peg.setAttribute("height", pegTh);
+    peg.setAttribute("rx","3"); peg.setAttribute("ry","3");
+    // rotate rectangle around its center to tangent: angle = midAng + 90°
+    const angleDeg = (midAng*180/Math.PI)+90;
+    peg.setAttribute("fill","url(#goldStroke)");
+    peg.setAttribute("transform", `translate(${px} ${py}) rotate(${angleDeg}) translate(${-pegLen/2} ${-pegTh/2})`);
+    peg.setAttribute("data-peg-angle", (midAng*180/Math.PI).toFixed(4)); // store degrees for tick logic
+    peg.classList.add("peg");
+    svg.appendChild(peg);
   }
-})();
 
-/* ====== AUDIO (WebAudio simple beeps) ====== */
+  // outer gold stroke gradient
+  const gs = document.createElementNS(svg.namespaceURI,"linearGradient");
+  gs.setAttribute("id","goldStroke"); gs.setAttribute("x1","0"); gs.setAttribute("y1","0"); gs.setAttribute("x2","1"); gs.setAttribute("y2","1");
+  const g1 = document.createElementNS(svg.namespaceURI,"stop"); g1.setAttribute("offset","0%"); g1.setAttribute("stop-color", "#fff3c2");
+  const g2 = document.createElementNS(svg.namespaceURI,"stop"); g2.setAttribute("offset","35%"); g2.setAttribute("stop-color", "#ffd166");
+  const g3 = document.createElementNS(svg.namespaceURI,"stop"); g3.setAttribute("offset","60%"); g3.setAttribute("stop-color", "#cfa43b");
+  const g4 = document.createElementNS(svg.namespaceURI,"stop"); g4.setAttribute("offset","100%"); g4.setAttribute("stop-color", "#fff0b0");
+  gs.append(g1,g2,g3,g4); svg.appendChild(gs);
+}
+buildWheel();
+
+/* =================== AUDIO =================== */
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 const actx = new AudioCtx();
-let ticking = false, tickInt = null;
-function tick(){
+function tickSound(){
   const o = actx.createOscillator();
   const g = actx.createGain();
-  o.type="square"; o.frequency.value=1100 + Math.random()*200;
-  g.gain.setValueAtTime(0.06, actx.currentTime);
-  g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime+0.07);
-  o.connect(g).connect(actx.destination);
-  o.start(); o.stop(actx.currentTime+0.08);
+  o.type="square"; o.frequency.value=1200 + Math.random()*150;
+  g.gain.setValueAtTime(0.07, actx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime+0.08);
+  o.connect(g).connect(actx.destination); o.start(); o.stop(actx.currentTime+0.09);
 }
 function whoosh(){
   const o = actx.createOscillator(), g = actx.createGain();
-  o.type="sawtooth"; o.frequency.setValueAtTime(200, actx.currentTime);
-  o.frequency.exponentialRampToValueAtTime(40, actx.currentTime+0.6);
+  o.type="sawtooth"; o.frequency.setValueAtTime(220, actx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(40, actx.currentTime+0.7);
   g.gain.setValueAtTime(0.0001, actx.currentTime);
-  g.gain.exponentialRampToValueAtTime(0.08, actx.currentTime+0.04);
-  g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime+0.8);
-  o.connect(g).connect(actx.destination);
-  o.start(); o.stop(actx.currentTime+0.85);
+  g.gain.exponentialRampToValueAtTime(0.08, actx.currentTime+0.05);
+  g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime+0.9);
+  o.connect(g).connect(actx.destination); o.start(); o.stop(actx.currentTime+0.95);
 }
 
-/* ====== CONFETTI (tiny) ====== */
-const ctx = confettiCanvas.getContext('2d');
-function resizeCanvas(){
-  confettiCanvas.width = window.innerWidth;
-  confettiCanvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas); resizeCanvas();
-
+/* =================== CONFETTI =================== */
+const confettiCanvas = document.getElementById("confetti");
+const cctx = confettiCanvas.getContext('2d');
+function resizeC(){ confettiCanvas.width=innerWidth; confettiCanvas.height=innerHeight; }
+addEventListener('resize', resizeC); resizeC();
 let flakes=[];
-function burstConfetti(x=window.innerWidth/2,y=window.innerHeight/2, n=140){
-  flakes = [];
+function confettiBurst(x=innerWidth/2,y=innerHeight/2,n=140){
+  flakes=[];
   for(let i=0;i<n;i++){
-    flakes.push({
-      x,y,
-      vx:(Math.random()*2-1)*6,
-      vy:(Math.random()*2-1)*6 - 3,
-      g:0.18 + Math.random()*0.08,
-      s: 3 + Math.random()*3,
-      a: Math.random()*Math.PI*2,
-      va:(Math.random()*.2-.1),
-      c: i%3===0 ? "#ffd166" : (i%3===1 ? "#25FFE6" : "#0DC5FF")
-    });
+    flakes.push({x,y,vx:(Math.random()*2-1)*6,vy:(Math.random()*2-1)*6-3,g:0.18+Math.random()*0.08,s:3+Math.random()*3,a:Math.random()*Math.PI*2,va:Math.random()*.2-.1,c:i%3? (i%3===1?"#25FFE6":"#0DC5FF"):"#ffd166"});
   }
-  animateConfetti(0);
-}
-let confettiRAF=null;
-function animateConfetti(t){
-  ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
-  flakes.forEach(f=>{
-    f.vy += f.g; f.x += f.vx; f.y += f.vy; f.a += f.va;
-    ctx.save();
-    ctx.translate(f.x,f.y); ctx.rotate(f.a);
-    ctx.fillStyle=f.c;
-    ctx.fillRect(-f.s/2, -f.s/2, f.s, f.s*1.6);
-    ctx.restore();
-  });
-  flakes = flakes.filter(f=> f.y < confettiCanvas.height+20);
-  if(flakes.length) confettiRAF = requestAnimationFrame(animateConfetti);
+  (function loop(){
+    cctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+    flakes.forEach(f=>{ f.vy+=f.g; f.x+=f.vx; f.y+=f.vy; f.a+=f.va;
+      cctx.save(); cctx.translate(f.x,f.y); cctx.rotate(f.a);
+      cctx.fillStyle=f.c; cctx.fillRect(-f.s/2,-f.s/2,f.s,f.s*1.6); cctx.restore();
+    });
+    flakes = flakes.filter(f=> f.y < confettiCanvas.height+20);
+    if(flakes.length) requestAnimationFrame(loop);
+  })();
 }
 
-/* ====== SPIN LOGIC ====== */
-let isSpinning=false;
+/* =================== SPIN ANIMATION (RAF) =================== */
+const spinBtn = document.getElementById("spinBtn");
+const popup = document.getElementById("popup");
+const resultText = document.getElementById("resultText");
+const goSite = document.getElementById("goSite");
+const closePop = document.getElementById("closePop");
+const hubTxt = document.querySelector(".hub .txt");
+
+let currentDeg = 0;
+let spinning=false;
+
+function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); } // smooth
+
 function spin(){
-  if(isSpinning) return;
-  isSpinning=true;
-  spinBtn.disabled=true; hubTxt.textContent="DÖNÜYOR";
+  if(spinning) return;
+  spinning=true; spinBtn.disabled=true; hubTxt.textContent="DÖNÜYOR";
+  if(actx.state==="suspended"){ actx.resume(); }
 
-  // pick random prize index fairly
-  const index = Math.floor(Math.random()*prizes.length);
+  const N = prizes.length;
+  const sliceDeg = 360 / N;
 
-  // Each slice is 360/4 = 90deg. We want pointer at 12 o'clock (0deg).
-  // We'll rotate wheel so that chosen slice lands at the top.
-  // Our labels start at arc1 (0..90) -> index 0 should land top; so offset:
-  const sliceDeg = 360 / prizes.length; // 90
-  const randomNudge = Math.random()* (sliceDeg*0.22) - (sliceDeg*0.11); // small variability
-  const stopAngle = (360*5) + (index*sliceDeg) + randomNudge; // 5 full turns + target
+  // Hedef index (adil)
+  const targetIndex = Math.floor(Math.random()*N);
 
-  // start audio whoosh
+  // Dilimlerin 0° üstte tam ortası olacak şekilde final açı:
+  // pointer 0°'de, hedef dilimin ortası (index*sliceDeg + sliceDeg/2) üstte olmalı.
+  const destCenter = targetIndex*sliceDeg + sliceDeg/2;
+
+  // 5-6 tam tur + hedef
+  const extraTurns = 5 + Math.floor(Math.random()*2); // 5 veya 6 tur
+  const finalDeg = extraTurns*360 + destCenter;
+
+  const startDeg = currentDeg % 360;
+  const delta = (finalDeg - startDeg) + (startDeg>destCenter?0:0); // zaten büyük
+
+  const dur = 5600; // ms
+  const t0 = performance.now();
+
+  // peg algılama için eşik
+  const pegs = [...svg.querySelectorAll(".peg")].map(el => parseFloat(el.getAttribute("data-peg-angle"))); // 0..360
+  let lastTickDeg = startDeg;
+
   whoosh();
 
-  // ticks while spinning
-  let tickRate = 55; // ms between ticks, will slow down
-  ticking = true;
-  tick();
-  tickInt = setInterval(()=>{
-    tick();
-    tickRate = Math.min(150, tickRate+3);
-  }, tickRate);
+  function frame(now){
+    const t = Math.min(1, (now - t0)/dur);
+    const k = easeOutCubic(t);
+    const ang = startDeg + delta * k;
+    svg.style.transform = `rotate(${ang}deg)`;
 
-  // animate
-  wheel.style.transform = `rotate(${stopAngle}deg)`;
+    // Peg crossing (her dilimin ortasında tek barem)
+    // Tick, bir peg'in yanından geçtiğimizde (ang artarken) tetiklenir.
+    // Basit yaklaşım: her ~sliceDeg ilerleyişte bir kez çal.
+    const prog = (ang % 360 + 360) % 360;
+    const lastProg = (lastTickDeg % 360 + 360) % 360;
 
-  // When transition ends (~5.6s)
-  const duration = 5600;
-  setTimeout(()=>{
-    clearInterval(tickInt); ticking=false;
-    hubTxt.textContent="ÇEVİR";
-    // Normalize rotation to determine index again (in case of CSS rounding)
-    // But we'll trust picked index for result text.
-    resultText.textContent = "Kazandınız: " + prizes[index];
-    popup.classList.add("show");
-    burstConfetti();
-    isSpinning=false;
-    spinBtn.disabled=false;
-  }, duration + 60);
+    // geçilen peg var mı?
+    for(const p of pegs){
+      const crossed = lastProg < p && prog >= p || (lastProg > prog && (prog >= p || lastProg < p)); // wrap-around
+      if(crossed){ tickSound(); break; }
+    }
+    lastTickDeg = ang;
+
+    if(t<1){ requestAnimationFrame(frame); }
+    else{
+      currentDeg = ang;
+      svg.style.transform = `rotate(${finalDeg}deg)`; // snap
+      // Sonuç
+      resultText.textContent = "Kazandınız: " + prizes[targetIndex];
+      popup.classList.add("show");
+      confettiBurst();
+      spinning=false; spinBtn.disabled=false; hubTxt.textContent="ÇEVİR";
+    }
+  }
+  requestAnimationFrame(frame);
 }
 
-/* ====== UI HOOKS ====== */
-spinBtn.addEventListener("click", ()=>{
-  // Resume AudioContext on first interaction (mobile)
-  if(actx.state==="suspended"){ actx.resume(); }
-  spin();
-});
-goSite.addEventListener("click", ()=> window.location.href = siteUrl );
+/* =================== UI HOOKS =================== */
+spinBtn.addEventListener("click", spin);
+goSite.addEventListener("click", ()=> location.href = siteUrl );
 closePop.addEventListener("click", ()=> popup.classList.remove("show") );
-popup.addEventListener("click", (e)=>{ if(e.target===popup) popup.classList.remove("show"); });
-
-/* ====== ACCESSIBILITY: Space/Enter triggers ====== */
-document.addEventListener("keydown", (e)=>{
-  if((e.key===" " || e.key==="Enter") && !isSpinning){
-    e.preventDefault(); spinBtn.click();
-  }
+popup.addEventListener("click", e=>{ if(e.target===popup) popup.classList.remove("show") });
+document.addEventListener("keydown", e=>{
+  if((e.key===" "||e.key==="Enter") && !spinning){ e.preventDefault(); spinBtn.click(); }
 });
 </script>
 </body>
