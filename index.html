@@ -6,68 +6,84 @@
   <title>Zbahis Çarkı</title>
   <style>
     body {
-      background: #111;
+      background: radial-gradient(circle, #0d0d0d, #000);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       color: #fff;
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
+    }
+    .logo {
+      width: 220px;
+      margin-bottom: 20px;
     }
     .wheel-container {
       position: relative;
-      width: 400px;
-      height: 400px;
+      width: 450px;
+      height: 450px;
     }
     .wheel {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      border: 10px solid #ffcc00;
-      position: relative;
-      overflow: hidden;
+      border: 12px solid gold;
+      box-shadow: 0 0 30px rgba(255,215,0,0.7);
+      background: conic-gradient(
+        #e63946 0deg 90deg,
+        #2ecc71 90deg 180deg,
+        #3498db 180deg 270deg,
+        #f39c12 270deg 360deg
+      );
       transform: rotate(0deg);
-      transition: transform 4s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: transform 5s cubic-bezier(0.25, 1, 0.5, 1);
+      position: relative;
     }
-    .segment {
+    .wheel span {
       position: absolute;
       width: 50%;
       height: 50%;
-      background: #ff3333;
-      transform-origin: 100% 100%;
-      clip-path: polygon(100% 100%, 0 100%, 100% 0);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
-      font-size: 18px;
       font-weight: bold;
+      font-size: 18px;
+      text-shadow: 1px 1px 4px #000;
+      color: #fff;
     }
-    .segment:nth-child(2) { transform: rotate(90deg); background: #33cc33; }
-    .segment:nth-child(3) { transform: rotate(180deg); background: #3399ff; }
-    .segment:nth-child(4) { transform: rotate(270deg); background: #ff9900; }
+    .wheel span:nth-child(1) { top: 10%; left: 50%; transform: translate(-50%, 0) rotate(45deg); }
+    .wheel span:nth-child(2) { top: 50%; left: 90%; transform: translate(-50%, -50%) rotate(135deg); }
+    .wheel span:nth-child(3) { bottom: 10%; left: 50%; transform: translate(-50%, 0) rotate(225deg); }
+    .wheel span:nth-child(4) { top: 50%; left: 10%; transform: translate(-50%, -50%) rotate(-45deg); }
 
     .pointer {
       position: absolute;
-      top: -20px;
+      top: -30px;
       left: 50%;
       transform: translateX(-50%);
       width: 0;
       height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 30px solid #ffcc00;
+      border-left: 25px solid transparent;
+      border-right: 25px solid transparent;
+      border-bottom: 40px solid gold;
+      filter: drop-shadow(0 0 10px gold);
     }
     button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      font-size: 18px;
-      background: #ffcc00;
+      margin-top: 30px;
+      padding: 14px 28px;
+      font-size: 20px;
+      background: linear-gradient(90deg, #ffcc00, #ff9900);
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       font-weight: bold;
+      color: #000;
+      box-shadow: 0 0 15px rgba(255,215,0,0.7);
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.05);
     }
     .popup {
       position: fixed;
@@ -79,34 +95,49 @@
       justify-content: center;
       flex-direction: column;
       color: #fff;
+      z-index: 1000;
     }
     .popup-content {
-      background: #222;
-      padding: 30px;
-      border-radius: 15px;
+      background: #1a1a1a;
+      padding: 40px;
+      border-radius: 20px;
       text-align: center;
+      box-shadow: 0 0 20px rgba(255,215,0,0.7);
+      animation: popupFade 0.6s ease;
+    }
+    .popup img {
+      width: 180px;
+      margin-bottom: 20px;
     }
     .popup button {
       margin-top: 20px;
-      background: #33cc33;
+      background: linear-gradient(90deg, #33cc33, #27ae60);
+      color: white;
+      box-shadow: 0 0 15px rgba(0,255,100,0.6);
+    }
+    @keyframes popupFade {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <h1>Zbahis Çarkı</h1>
+  <img src="logo.png" alt="Zbahis" class="logo">
+
   <div class="wheel-container">
     <div class="pointer"></div>
     <div class="wheel" id="wheel">
-      <div class="segment">1000 TL Nakit</div>
-      <div class="segment">1000 TL Freespin</div>
-      <div class="segment">1000 TL Bonus Buy</div>
-      <div class="segment">1000 TL Freebet</div>
+      <span>1000 TL Nakit</span>
+      <span>1000 TL Freespin</span>
+      <span>1000 TL Bonus Buy</span>
+      <span>1000 TL Freebet</span>
     </div>
   </div>
   <button onclick="spin()">Çarkı Çevir</button>
 
   <div class="popup" id="popup">
     <div class="popup-content">
+      <img src="logo.png" alt="Zbahis Logo">
       <h2 id="resultText"></h2>
       <button onclick="goToSite()">Siteye Git</button>
     </div>
@@ -138,11 +169,11 @@
         resultText.innerText = "Kazandınız: " + prizes[randomIndex];
         popup.style.display = "flex";
         isSpinning = false;
-      }, 4000);
+      }, 5000);
     }
 
     function goToSite() {
-      window.location.href = "https://zbahis.com"; // yönlendirme yapılacak URL
+      window.location.href = "https://zbahis.com"; // yönlendirilecek site
     }
   </script>
 </body>
