@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Zbahis Çarkı • Ultra + Barem Fix</title>
+<title>Zbahis Çarkı • Ultra + 1000×90 GIF Banner</title>
 <meta name="color-scheme" content="dark" />
 <style>
   :root{
@@ -19,8 +19,19 @@
       radial-gradient(1200px 700px at 50% -10%, rgba(37,255,230,.16), transparent 60%),
       radial-gradient(1200px 700px at 50% 110%, rgba(13,197,255,.12), transparent 60%),
       radial-gradient(circle at 50% 45%, var(--bg1) 0%, var(--bg2) 38%, var(--bg3) 100%);
-    display:grid; place-items:center; padding:18px;
+    display:flex; flex-direction:column; align-items:center; gap:14px; padding:12px;
     overflow-x:hidden;
+  }
+
+  /* TOP 1000×90 GIF BANNER */
+  .promo{ width:min(100%, 1000px); }
+  .promo a{ display:block }
+  .promo img{
+    width:100%; height:auto; display:block;
+    aspect-ratio: 1000 / 90;              /* oran sabit */
+    border-radius:16px;
+    box-shadow:0 16px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.15);
+    image-rendering:-webkit-optimize-contrast; image-rendering:crisp-edges;
   }
 
   .wrap{ width:min(96vw,1040px); display:grid; gap:16px; place-items:center }
@@ -49,17 +60,14 @@
                linear-gradient(135deg, var(--gold-3), var(--gold) 40%, var(--gold-2)) border-box; z-index:2; }
 
   .wheel{ position:absolute; inset:28px; border-radius:50%; z-index:3; will-change:transform }
-  /* Parlama/cam – biraz daha şeffaf ki baremler gözüksün */
   .glass{ position:absolute; inset:28px; border-radius:50%; z-index:5; pointer-events:none;
     background:
       radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,.15), transparent 60%),
       radial-gradient(80% 60% at 50% 120%, rgba(255,255,255,.06), transparent 50%);
     mix-blend-mode:screen; opacity:.22;
   }
-
-  /* Merkez logo (tıklanabilir) */
   .hub{
-    position:absolute; inset:calc(50% - 15%); border-radius:50%; z-index:6; /* camın altında, SVG'den bağımsız */
+    position:absolute; inset:calc(50% - 15%); border-radius:50%; z-index:6;
     display:grid; place-items:center; cursor:pointer;
     background: radial-gradient(circle at 35% 35%, #fff6d4 0%, #ffe08a 25%, var(--gold) 50%, var(--gold-2) 100%);
     border:4px solid rgba(0,0,0,.35);
@@ -75,7 +83,6 @@
   .btn[disabled]{ opacity:.6; cursor:not-allowed }
   .hint{ font-size:12px; color:#bcd4f7; opacity:.8; text-align:center }
 
-  /* Popup */
   .popup{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:20; background:rgba(0,0,0,.7); backdrop-filter:blur(6px) }
   .popup.show{ display:flex }
   .card{ width:min(92vw,560px); border-radius:22px; padding:26px; text-align:center;
@@ -88,15 +95,25 @@
     color:#fff; background:linear-gradient(90deg,#2cf08c,#10b981); box-shadow:0 10px 26px rgba(16,185,129,.35), inset 0 -6px 12px rgba(0,0,0,.25); }
   .ghost{ margin-top:10px; padding:10px 16px; border-radius:12px; background:transparent; border:1px solid rgba(255,255,255,.22); color:#e6f2ff; cursor:pointer }
 
-  /* Confetti */
   canvas#confetti{ position:fixed; inset:0; pointer-events:none; z-index:19 }
 
   @media (max-width:480px){
+    .promo img{ border-radius:12px }
     .btn{ padding:12px 20px; font-size:16px }
   }
 </style>
 </head>
 <body>
+
+  <!-- 1000×90 HAREKETLİ GIF BANNER -->
+  <div class="promo">
+    <a href="https://zbahis.com" target="_blank" rel="noopener">
+      <img src="banner-1000x90.gif" width="1000" height="90"
+           alt="Zbahis Kampanya Bannerı 1000×90 (GIF)"
+           loading="eager" decoding="async">
+    </a>
+  </div>
+
   <div class="wrap">
     <div class="brand">
       <img src="logo.png" alt="Zbahis">
@@ -110,7 +127,6 @@
 
       <!-- ÇARK -->
       <svg class="wheel" id="wheelSvg" viewBox="0 0 1000 1000" aria-label="Ödül Çarkı">
-        <!-- defs ÖNCE: gradyan & gölge -->
         <defs>
           <linearGradient id="sliceGold" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stop-color="#fff3c2"/>
@@ -129,10 +145,8 @@
         </defs>
       </svg>
 
-      <!-- cam parlama -->
       <div class="glass"></div>
 
-      <!-- Merkez LOGO (tıklanabilir) -->
       <div class="hub" id="hubSpin" title="Döndür">
         <img src="logo.png" alt="Zbahis" />
       </div>
@@ -144,10 +158,8 @@
     <div class="hint">Her dilimde 1 barem (altın perçin). Sonuç, işaretçi altındaki dilimle %100 aynı.</div>
   </div>
 
-  <!-- Confetti -->
   <canvas id="confetti"></canvas>
 
-  <!-- Popup -->
   <div class="popup" id="popup" role="dialog" aria-modal="true" aria-labelledby="popTitle">
     <div class="card">
       <img src="logo.png" alt="Zbahis">
@@ -159,7 +171,7 @@
   </div>
 
 <script>
-/* =================== ÖDÜLLER =================== */
+/* ===== Ödüller ===== */
 const prizes = [
   "🎁 1000 TL Nakit",
   "🎁 1000 TL Freespin",
@@ -168,88 +180,77 @@ const prizes = [
 ];
 const siteUrl = "https://zbahis.com";
 
-/* =================== ÇARK OLUŞTURMA (SVG) =================== */
+/* ===== SVG Çark ===== */
 const svg = document.getElementById("wheelSvg");
 const CX=500, CY=500, R_OUT=460, R_IN=120;
-const PEG_OFFSET = 18;   // dış kenardan içe mesafe
-const PEG_SIZE   = 9;    // barem yarıçapı (px)
-
+const PEG_OFFSET = 18, PEG_SIZE = 9;
 const SLICE_COLORS = [
   ["#d83a42","#ff6a74"], ["#20bf6b","#7bed9f"],
   ["#2980b9","#6fb3ff"], ["#f39c12","#ffd66e"]
 ];
 
-function polarToXY(r, ang){ return [CX + r*Math.sin(ang), CY - r*Math.cos(ang)]; } // 0° tepe
+function polarToXY(r, ang){ return [CX + r*Math.sin(ang), CY - r*Math.cos(ang)]; }
 
 function buildWheel(){
-  // taban plaka
-  const plate = document.createElementNS(svg.namespaceURI,"circle");
-  plate.setAttribute("cx",CX); plate.setAttribute("cy",CY); plate.setAttribute("r",R_OUT);
-  plate.setAttribute("fill","#0a1320"); svg.appendChild(plate);
-
-  const N = prizes.length;
-  const sliceRad = (Math.PI*2)/N;
-
-  // gruplar
+  const N = prizes.length, sliceRad = (Math.PI*2)/N;
   const gSlices = document.createElementNS(svg.namespaceURI,"g");
   const gLabels = document.createElementNS(svg.namespaceURI,"g");
   const gSeps   = document.createElementNS(svg.namespaceURI,"g");
   const gPegs   = document.createElementNS(svg.namespaceURI,"g");
   svg.append(gSlices, gLabels, gSeps, gPegs);
 
+  // taban
+  const plate = document.createElementNS(svg.namespaceURI,"circle");
+  plate.setAttribute("cx",CX); plate.setAttribute("cy",CY); plate.setAttribute("r",R_OUT);
+  plate.setAttribute("fill","#0a1320"); gSlices.appendChild(plate);
+
   for(let i=0;i<N;i++){
     const startAng=i*sliceRad, endAng=(i+1)*sliceRad, midAng=startAng+sliceRad/2;
 
-    // Dilim path'i
+    // Dilim
     const [x1,y1]=polarToXY(R_IN,startAng), [x2,y2]=polarToXY(R_OUT,startAng);
     const [x3,y3]=polarToXY(R_OUT,endAng), [x4,y4]=polarToXY(R_IN,endAng);
     const largeArc = (sliceRad>Math.PI)?1:0;
     const p = document.createElementNS(svg.namespaceURI,"path");
     p.setAttribute("d",`M${x1} ${y1} L${x2} ${y2} A${R_OUT} ${R_OUT} 0 ${largeArc} 1 ${x3} ${y3} L${x4} ${y4} A${R_IN} ${R_IN} 0 ${largeArc} 0 ${x1} ${y1} Z`);
-    // renk degrade
     const gradId=`g${i}`, grad=document.createElementNS(svg.namespaceURI,"linearGradient");
     grad.setAttribute("id",gradId); grad.setAttribute("x1","0"); grad.setAttribute("y1","0"); grad.setAttribute("x2","1"); grad.setAttribute("y2","1");
     const c=SLICE_COLORS[i%SLICE_COLORS.length];
     grad.innerHTML=`<stop offset="0%" stop-color="${c[0]}"/><stop offset="100%" stop-color="${c[1]}"/>`;
     svg.querySelector('defs').appendChild(grad);
-    p.setAttribute("fill",`url(#${gradId})`); p.setAttribute("opacity",".98");
-    gSlices.appendChild(p);
+    p.setAttribute("fill",`url(#${gradId})`); p.setAttribute("opacity",".98"); gSlices.appendChild(p);
 
     // Etiket
     const arcId=`a${i}`, midR=(R_IN+R_OUT)/2;
     const [ax1,ay1]=polarToXY(midR,startAng+0.04), [ax2,ay2]=polarToXY(midR,endAng-0.04);
-    const arc=document.createElementNS(svg.namespaceURI,"path");
-    arc.setAttribute("id",arcId); arc.setAttribute("d",`M${ax1} ${ay1} A ${midR} ${midR} 0 0 1 ${ax2} ${ay2}`);
-    arc.setAttribute("fill","none"); gLabels.appendChild(arc);
+    const arc=document.createElementNS(svg.namespaceURI,"path"); arc.setAttribute("id",arcId);
+    arc.setAttribute("d",`M${ax1} ${ay1} A ${midR} ${midR} 0 0 1 ${ax2} ${ay2}`); arc.setAttribute("fill","none"); gLabels.appendChild(arc);
     const label=document.createElementNS(svg.namespaceURI,"text");
     label.setAttribute("fill","#fff"); label.setAttribute("font-size","36"); label.setAttribute("font-weight","800"); label.setAttribute("letter-spacing",".06em");
     const tp=document.createElementNS(svg.namespaceURI,"textPath");
     tp.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href",`#${arcId}`); tp.setAttribute("startOffset","50%"); tp.setAttribute("text-anchor","middle");
     tp.textContent=prizes[i].replace("🎁 ",""); label.appendChild(tp); gLabels.appendChild(label);
 
-    // Altın ayırıcı
+    // Ayırıcı
     const [sx1,sy1]=polarToXY(R_IN,startAng), [sx2,sy2]=polarToXY(R_OUT,startAng);
     const sep=document.createElementNS(svg.namespaceURI,"line");
     sep.setAttribute("x1",sx1); sep.setAttribute("y1",sy1); sep.setAttribute("x2",sx2); sep.setAttribute("y2",sy2);
     sep.setAttribute("stroke","url(#sliceGold)"); sep.setAttribute("stroke-width","6"); sep.setAttribute("stroke-linecap","round");
     gSeps.appendChild(sep);
 
-    // ===== BAREM (altın perçin, 1 adet/dilim) =====
-    const pegR = R_OUT - PEG_OFFSET;
-    const [px,py]=polarToXY(pegR,midAng);
+    // Barem (1 adet)
+    const pegR = R_OUT - PEG_OFFSET; const [px,py]=polarToXY(pegR,midAng);
     const peg = document.createElementNS(svg.namespaceURI,"circle");
     peg.setAttribute("cx",px); peg.setAttribute("cy",py); peg.setAttribute("r",PEG_SIZE);
-    peg.setAttribute("fill","url(#pegFill)");
-    peg.setAttribute("stroke","#7a5b12"); peg.setAttribute("stroke-width","1.5");
+    peg.setAttribute("fill","url(#pegFill)"); peg.setAttribute("stroke","#7a5b12"); peg.setAttribute("stroke-width","1.5");
     peg.setAttribute("filter","url(#pegShadow)");
     peg.setAttribute("data-peg-angle",(midAng*180/Math.PI).toFixed(4));
-    peg.classList.add("peg");
-    gPegs.appendChild(peg);
+    peg.classList.add("peg"); gPegs.appendChild(peg);
   }
 }
 buildWheel();
 
-/* =================== SES =================== */
+/* ===== Ses ===== */
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 const actx = new AudioCtx();
 function tickSound(){ const o=actx.createOscillator(), g=actx.createGain();
@@ -267,7 +268,7 @@ function whoosh(){ const o=actx.createOscillator(), g=actx.createGain();
   o.connect(g).connect(actx.destination); o.start(); o.stop(actx.currentTime+0.95);
 }
 
-/* =================== CONFETTI =================== */
+/* ===== Confetti ===== */
 const confettiCanvas=document.getElementById("confetti");
 const cctx=confettiCanvas.getContext('2d');
 function resizeC(){ confettiCanvas.width=innerWidth; confettiCanvas.height=innerHeight; }
@@ -292,7 +293,7 @@ function confettiBurst(x=innerWidth/2,y=innerHeight/2,n=120){
   })();
 }
 
-/* =================== SPIN (RAF) =================== */
+/* ===== Spin (RAF) ===== */
 const spinBtn=document.getElementById("spinBtn");
 const hubSpin=document.getElementById("hubSpin");
 const popup=document.getElementById("popup");
@@ -303,7 +304,7 @@ const closePop=document.getElementById("closePop");
 let currentDeg=0, spinning=false;
 const N = prizes.length;
 const sliceDeg = 360 / N;
-const pegs=[...svg.querySelectorAll(".peg")].map(el=>parseFloat(el.getAttribute("data-peg-angle"))); // 0..360
+const pegs=[...svg.querySelectorAll(".peg")].map(el=>parseFloat(el.getAttribute("data-peg-angle")));
 
 function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
 
@@ -321,8 +322,8 @@ function spin(){
   const delta = finalDeg - startDeg;
   const dur = 5600;
   const t0 = performance.now();
-
   let lastTickDeg=startDeg;
+
   whoosh();
 
   function frame(now){
@@ -343,7 +344,7 @@ function spin(){
     else{
       currentDeg = finalDeg;
 
-      // Doğru sonuç: tepedeki dilim
+      // Doğru sonuç: işaretçi altındaki dilim
       const A = ((currentDeg % 360) + 360) % 360;
       const topAngle = ((-A % 360) + 360) % 360;
       const landedIndex = Math.floor(topAngle / sliceDeg) % N;
@@ -358,9 +359,9 @@ function spin(){
   requestAnimationFrame(frame);
 }
 
-/* =================== ETKİLEŞİM =================== */
+/* ===== Etkileşim ===== */
 spinBtn.addEventListener("click", spin);
-hubSpin.addEventListener("click", spin);              // merkez logo da döndürür
+hubSpin.addEventListener("click", spin);
 goSite.addEventListener("click", ()=> location.href = siteUrl );
 closePop.addEventListener("click", ()=> popup.classList.remove("show") );
 popup.addEventListener("click", e=>{ if(e.target===popup) popup.classList.remove("show"); });
